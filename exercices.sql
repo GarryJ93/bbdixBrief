@@ -1,23 +1,23 @@
 --1. Liste des potions : Numéro, libellé, formule et constituant principal. (5 lignes)
-
+SELECT * FROM potion;
 --2. Liste des noms des trophées rapportant 3 points. (2 lignes)
-
+SELECT nom_categ FROM categorie WHERE nb_points = 3;
 --3. Liste des villages (noms) contenant plus de 35 huttes. (4 lignes)
-
+SELECT nom_village FROM village WHERE nb_huttes > 35;
 --4. Liste des trophées (numéros) pris en mai / juin 52. (4 lignes)
 
 --5. Noms des habitants commençant par 'a' et contenant la lettre 'r'. (3 lignes)
-
+SELECT nom FROM habitant WHERE (nom LIKE 'A%') and (nom LIKE '%r%');
 --6. Numéros des habitants ayant bu les potions numéros 1, 3 ou 4. (8 lignes)
-
+SELECT DISTINCT num_hab FROM absorber WHERE num_potion = 1 OR num_potion = 3 OR num_potion  =  4;
 --7. Liste des trophées : numéro, date de prise, nom de la catégorie et nom du preneur. (10lignes)
-
+SELECT num_trophee, date_prise, code_cat, nom FROM trophee INNER JOIN habitant ON num_preneur = num_hab;
 --8. Nom des habitants qui habitent à Aquilona. (7 lignes)
-
+SELECT nom FROM habitant WHERE num_village = 1;
 --9. Nom des habitants ayant pris des trophées de catégorie Bouclier de Légat. (2 lignes)
-
+SELECT nom FROM habitant INNER JOIN trophee  ON num_hab = num_preneur AND code_cat ='BLT';
 --10. Liste des potions (libellés) fabriquées par Panoramix : libellé, formule et constituantprincipal. (3 lignes)
-
+SELECT lib_potion, formule, constituant_principal FROM potion INNER JOIN fabriquer ON fabriquer.num_potion = potion.num_potion AND num_hab = 4;
 --11. Liste des potions (libellés) absorbées par Homéopatix. (2 lignes)
 
 --12. Liste des habitants (noms) ayant absorbé une potion fabriquée par l'habitant numéro 3. (4 lignes)
@@ -29,7 +29,7 @@
 --15. Nom des habitants ayant consommé la Potion magique n°1 (c'est le libellé de lapotion) en février 52. (3 lignes)
 
 --16. Nom et âge des habitants par ordre alphabétique. (22 lignes)
-
+SELECT nom, age FROM habitant ORDER BY nom;
 --17. Liste des resserres classées de la plus grande à la plus petite : nom de resserre et nom du village. (3 lignes)
 
 --***
