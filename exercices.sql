@@ -49,6 +49,10 @@ SELECT nom
 FROM habitant 
 LEFT JOIN qualite ON habitant.num_qualite = qualite.num_qualite 
 WHERE qualite.num_qualite IS NULL;
+ou 
+SELECT nom 
+FROM habitant 
+WHERE num_qualite IS NULL;
 --15. Nom des habitants ayant consommé la Potion magique n°1 (c'est le libellé de lapotion) en février 52. (3 lignes)
 SELECT nom 
 FROM habitant 
@@ -91,7 +95,7 @@ SELECT nom, count(trophee.num_preneur) AS nbr_trophees
 FROM habitant 
 INNER JOIN trophee ON habitant.num_hab  = trophee.num_preneur GROUP BY habitant.nom  ;
 --25. Moyenne d'âge des habitants par province (nom de province, calcul). (3 lignes)
-SELECT nom_province, avg(habitant.age) AS moyenne_age
+SELECT nom_province, round(avg(habitant.age)) AS moyenne_age
 FROM province 
 INNER JOIN village ON province.num_province = village.num_province 
 INNER JOIN habitant ON village.num_village = habitant.num_village  GROUP BY province.nom_province ;
