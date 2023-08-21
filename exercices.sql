@@ -11,9 +11,10 @@ SELECT nom FROM habitant WHERE (nom LIKE 'A%') and (nom LIKE '%r%');
 --6. Numéros des habitants ayant bu les potions numéros 1, 3 ou 4. (8 lignes)
 SELECT DISTINCT num_hab FROM absorber WHERE num_potion = 1 OR num_potion = 3 OR num_potion  =  4;
 --7. Liste des trophées : numéro, date de prise, nom de la catégorie et nom du preneur. (10lignes)
-SELECT num_trophee, date_prise, code_cat, nom 
+SELECT num_trophee, date_prise, nom, nom_categ 
 FROM trophee 
-INNER JOIN habitant ON num_preneur = num_hab;
+INNER JOIN habitant ON num_preneur = num_hab
+inner join categorie on categorie.code_cat = trophee.code_cat ;
 --8. Nom des habitants qui habitent à Aquilona. (7 lignes)
 SELECT nom 
 FROM habitant 
